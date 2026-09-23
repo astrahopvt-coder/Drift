@@ -1,0 +1,59 @@
+{
+  "id": "key.splitAlpha",
+  "displayName": "Split Alpha (Self Matte)",
+  "category": "keying",
+  "order": 410,
+  "description": "Key a clip using the luminance of the other half of its own frame as the alpha matte. White in the matte half reveals, black hides. Use Black/White Point to pull a soft matte to full transparent/opaque.",
+  "backend": "gpu",
+  "parameters": [
+    {
+      "identifier": "u_colorSide",
+      "displayName": "Color Side (0 = Left, 1 = Right)",
+      "type": "float",
+      "minValue": 0.0,
+      "maxValue": 1.0,
+      "defaultValue": 0.0
+    },
+    {
+      "identifier": "u_invertAlpha",
+      "displayName": "Invert Matte",
+      "type": "float",
+      "minValue": 0.0,
+      "maxValue": 1.0,
+      "defaultValue": 0.0
+    },
+    {
+      "identifier": "u_blackPoint",
+      "displayName": "Black Point",
+      "type": "float",
+      "minValue": 0.0,
+      "maxValue": 1.0,
+      "defaultValue": 0.0
+    },
+    {
+      "identifier": "u_whitePoint",
+      "displayName": "White Point",
+      "type": "float",
+      "minValue": 0.0,
+      "maxValue": 1.0,
+      "defaultValue": 1.0
+    }
+  ],
+  "pipeline": {
+    "intermediateBuffers": [],
+    "passes": [
+      {
+        "passIndex": 0,
+        "fragmentShader": "main.frag",
+        "inputs": [
+          {
+            "type": "source_texture"
+          }
+        ],
+        "output": {
+          "type": "canvas"
+        }
+      }
+    ]
+  }
+}
